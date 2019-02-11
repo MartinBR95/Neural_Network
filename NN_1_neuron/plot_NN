@@ -1,0 +1,21 @@
+set   autoscale
+set term x11 0
+datafile = 'Log'
+firstrow = system('head -1 '.datafile)
+set xlabel word(firstrow, 1)
+set ylabel word(firstrow, 11)
+
+plot 'Log' using 1:11 with lines
+
+set term x11 1
+datafile = 'Map'
+firstrow = system('head -1 '.datafile)
+set xlabel word(firstrow, 1)
+set ylabel word(firstrow, 2)
+set zlabel word(firstrow, 3)
+
+
+splot 'Map' using 1:2:3 with points palette pointsize 1 pointtype 7 ,\
+      'Train_set' using 1:2:3 with points pointsize 1 pointtype 7
+pause -1
+
